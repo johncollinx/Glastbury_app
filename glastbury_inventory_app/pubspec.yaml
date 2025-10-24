@@ -1,0 +1,41 @@
+# pubspec.yaml
+
+name: glastbury_inventory_app
+description: Store inventory app for Glastbury Stores.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Icons
+  cupertino_icons: ^1.0.6
+  
+  # 🚀 DATABASE AND PERSISTENCE (CRUD)
+  sqflite: ^2.3.0       # SQLite database plugin
+  path: ^1.8.3          # Utility for file path handling
+  uuid: ^4.4.0          # For generating unique product IDs
+
+  # 🖼️ NATIVE FEATURES
+  image_picker: ^1.1.2  # Access to the device's camera and photo gallery
+
+  # 🎨 UI AND TYPOGRAPHY
+  google_fonts: ^6.2.1  # For elegant and readable custom fonts
+  
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  # 🖼️ ASSETS
+  # Register the images folder for all local product image placeholders.
+  assets:
+    - assets/images/

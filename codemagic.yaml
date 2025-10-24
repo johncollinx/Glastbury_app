@@ -1,0 +1,51 @@
+workflows:
+  android-build:
+    name: 'Glastbury Inventory Android Build'
+    
+    # 💡 SET THE WORKING DIRECTORY
+    # All commands will execute from the 'glastbury_inventory_app' subfolder
+    working_directory: glastbury_inventory_app
+
+    environment:
+      flutter: stable
+      # Define the platform tools for Android build
+      android_signing:
+        - keystore_reference
+      vars:
+        PACKAGE_NAME: "com.glastbury.inventory"
+        FLUTTER_CHANNEL: "stable" # Specify the channel
+        FLUTTER_VERSION: "3.22.x"  # Specify a minimum version
+      
+    scripts:
+      - name: Set Flutter version
+        script: |
+          flutter channel $FLUTTER_CHANNEL
+          flutter doctor
+          
+      - name: Get Flutter dependencies
+        script: |
+          # This command runs inside the working_directory (glastbury_inventory_app)
+          flutter pub get
+
+      - name: Run unit and widget tests
+        script: |
+          # Ensure your tests pass before building
+          flutter test --no-pub
+
+      - name: Build Android Release APK
+        script: |
+          # Builds the release APK for distribution
+          flutter build apk --release
+
+    artifacts:
+      # Collects the generated APK file
+      - build/app/outputs/flutter-apk/app-release.apk
+      # Collects test reports (optional)
+      - flutter_test.xml
+      
+    publishing:
+      # Optional: Add your Google Play or App Store publishing steps here
+      email:
+        recipients:
+          - johncollinsbran@gmail.com
+        triggering: always
