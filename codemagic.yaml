@@ -48,4 +48,4 @@ workflows:
       email:
         recipients:
           - johncollinsbran@gmail.com
-        triggering: always
+        
