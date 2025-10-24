@@ -1,13 +1,21 @@
+// android/build.gradle
+
 buildscript {
-    ext.kotlin_version = '1.7.10'
+    // Set a modern Kotlin version (typically >= 1.8.20 for recent Flutter)
+    ext.kotlin_version = '1.8.20' 
+    
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.0'
+        // Use a modern Android Gradle Plugin (AGP) version (8.1.4 is often compatible with Flutter 3.22+)
+        classpath 'com.android.tools.build:gradle:8.1.4' 
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        
+        // 💡 NEW LINE: Dependency for the new declarative Flutter plugin block
+        classpath 'dev.flutter.flutter_tools.gradle:flutter_gradle_plugin:1.0.0' 
     }
 }
 
@@ -26,6 +34,6 @@ subprojects {
     project.evaluationDependsOn(':app')
 }
 
-task clean(type: Delete) {
+tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
