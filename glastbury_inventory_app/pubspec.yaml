@@ -38,4 +38,4 @@ flutter:
   # 🖼️ ASSETS
   # Register the images folder for all local product image placeholders.
   assets:
-    - assets/images/
+    - assets/
