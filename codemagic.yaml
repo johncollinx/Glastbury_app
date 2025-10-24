@@ -40,12 +40,5 @@ workflows:
     artifacts:
       # Collects the generated APK file
       - build/app/outputs/flutter-apk/app-release.apk
-      # Collects test reports (optional)
-      - flutter_test.xml
       
-    publishing:
-      # Optional: Add your Google Play or App Store publishing steps here
-      email:
-        recipients:
-          - johncollinsbran@gmail.com
         
