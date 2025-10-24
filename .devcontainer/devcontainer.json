@@ -1,6 +1,0 @@
-
-{
-  "name": "Flutter Codespace",
-  "image": "cirrusci/flutter:latest",
-  "postCreateCommand": "flutter doctor"
-}
