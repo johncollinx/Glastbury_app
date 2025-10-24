@@ -3,13 +3,13 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import '../models/product.dart';
+import '../models/product_category.dart'; // FIX: Required for displayName
 
 class ProductDetailScreen extends StatelessWidget {
   final Product product;
 
   const ProductDetailScreen({super.key, required this.product});
 
-  // Helper to display the image (Asset or File)
   Widget _buildProductImage() {
     if (product.imageUrl.startsWith('assets/')) {
       return Image.asset(product.imageUrl, fit: BoxFit.cover);
@@ -18,7 +18,6 @@ class ProductDetailScreen extends StatelessWidget {
     }
   }
 
-  // Helper for consistent detail rows
   Widget _buildDetailRow(BuildContext context, String label, String value, IconData icon) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
@@ -28,10 +27,7 @@ class ProductDetailScreen extends StatelessWidget {
           const SizedBox(width: 16),
           Expanded(
             flex: 2,
-            child: Text(
-              label,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-            ),
+            child: Text(label, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
           ),
           Expanded(
             flex: 3,
@@ -60,19 +56,19 @@ class ProductDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            //  Header Image Area
+            // Header Image Area
             Container(
               height: 250,
               width: double.infinity,
               color: Theme.of(context).scaffoldBackgroundColor,
               child: Hero(
-                tag: product.id, // Animation tag for smooth transition
+                tag: product.id,
                 child: _buildProductImage(),
               ),
             ),
             const SizedBox(height: 20),
 
-            //  Price Tag (Red Accent for prominence)
+            // Price Tag
             Center(
               child: Text(
                 '\$${product.price.toStringAsFixed(2)}',
@@ -85,22 +81,12 @@ class ProductDetailScreen extends StatelessWidget {
             ),
             const Divider(height: 30, thickness: 1),
 
-            //  Detailed Info Section
+            // Detailed Info Section
             _buildDetailRow(context, 'Category', product.category.displayName, Icons.category),
-            _buildDetailRow(
-              context, 
-              'Quantity in Stock', 
-              '${product.quantity}', 
-              Icons.format_list_numbered
-            ),
-            _buildDetailRow(
-              context, 
-              'Stock Keeping Unit (SKU)', 
-              product.sku, 
-              Icons.vpn_key
-            ),
+            _buildDetailRow(context, 'Quantity in Stock', '${product.quantity}', Icons.format_list_numbered),
+            _buildDetailRow(context, 'Stock Keeping Unit (SKU)', product.sku, Icons.vpn_key),
             
-            // Highlight low stock
+            // Low stock alert
             if (product.quantity < 20)
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
