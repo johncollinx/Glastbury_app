@@ -9,8 +9,8 @@ workflows:
     environment:
       flutter: stable
       # Define the platform tools for Android build
-      android_signing:
-        - keystore_reference
+      #android_signing:
+        #- keystore_reference
       vars:
         PACKAGE_NAME: "com.glastbury.inventory"
         FLUTTER_CHANNEL: "stable" # Specify the channel
