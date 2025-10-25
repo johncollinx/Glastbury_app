@@ -1,4 +1,4 @@
-package com.example.glastbury_inventory_app
+package="com.glastbury.inventory"
 
 import io.flutter.embedding.android.FlutterActivity
 
