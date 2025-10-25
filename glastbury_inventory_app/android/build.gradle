@@ -1,13 +1,12 @@
 buildscript {
-    ext.kotlin_version = '2.0.0' // 🐛 FIX: Updated from '1.9.22' to a recent stable version
+    ext.kotlin_version = '2.0.0'
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        // 🐛 FIX: Updated AGP to '8.6.0' to address warning
-        classpath 'com.android.tools.build:gradle:8.6.0' 
+        classpath 'com.android.tools.build:gradle:8.6.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -20,12 +19,12 @@ allprojects {
 }
 
 rootProject.buildDir = '../build'
+
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
 }
 
+// ✅ Correct and single clean task
 tasks.register("clean", Delete) {
-    delete rootProject.buildDir
-}tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
